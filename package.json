@@ -1,19 +1,21 @@
 {
-  "name": "botback",
+  "name": "botback-vercel",
   "version": "1.0.0",
-  "description": "Backend for LLW Bot deployment",
-  "main": "server.js",
+  "description": "Backend for LLW Bot deployment on Vercel",
   "scripts": {
     "start": "node server.js",
+    "dev": "node server.js", // For local development
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["whatsapp", "bot", "deployment", "backend"],
+  "keywords": ["whatsapp", "bot", "deployment", "vercel", "serverless"],
   "author": "Your Name",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=16.x"
   }
 }
-
