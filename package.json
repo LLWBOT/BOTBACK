@@ -4,7 +4,7 @@
   "description": "Backend for LLW Bot deployment on Vercel",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js", // For local development
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["whatsapp", "bot", "deployment", "vercel", "serverless"],
