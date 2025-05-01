@@ -1,9 +1,16 @@
 // api/deploy.js
 
-// Importing child_process might not work reliably in Vercel's serverless environment.
-// import { spawn } from 'child_process';
-
 export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://exampleofty.netlify.app');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS'); // Adjust as needed
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    // Handle preflight request
+    res.status(200).end();
+    return;
+  }
+
   if (req.method === 'POST') {
     if (!global.currentConfig?.sessionId || !global.currentConfig?.mongodbUrl) {
       return res.status(400).json({ error: 'Configuration not yet provided.' });
@@ -18,14 +25,8 @@ export default async function handler(req, res) {
     console.log('      Consider triggering an external service or using a serverless');
     console.log('      bot implementation.');
 
-    // In a real scenario with Vercel, you would likely:
-    // 1. Trigger a deployment to a different platform designed for long-running processes.
-    // 2. Use a serverless implementation of your bot if possible.
-    // 3. Potentially use a service like AWS CodeBuild, Google Cloud Build, or similar
-    //    to handle the build and deployment of your bot based on the configuration.
-
   } else {
-    res.setHeader('Allow', ['POST']);
+    res.setHeader('Allow', ['POST, OPTIONS']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
